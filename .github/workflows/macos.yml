@@ -1,0 +1,46 @@
+name: macos
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - dev
+defaults:
+  run:
+    shell: bash
+jobs:
+  build:
+    runs-on: macos-13
+    strategy:
+      matrix:
+        include:
+          - suffix: macos-64bit
+    steps:
+      - name: Install packages
+        run: brew install ninja
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build cutechess
+        run: sh make_cute_posix.sh
+      - name: Test cutechess-cli
+        run: |
+          unzip cutechess-cli.zip
+          ./cutechess-cli --version
+          file cutechess-cli
+      - name: Rename archive
+        run: mv cutechess-cli.zip cutechess-cli-${{ matrix.suffix }}.zip
+      - name: VirusTotal Monitor Scan
+        uses: crazy-max/ghaction-virustotal@v4
+        with:
+          vt_api_key: ${{ secrets.VT_API_KEY }}
+          files: cutechess-cli-${{ matrix.suffix }}.zip
+      - name: Upload archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: cutechess-cli-${{ matrix.suffix }}.zip
+          path: cutechess-cli-${{ matrix.suffix }}.zip
+      - name: Upload artifact to release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: cutechess-cli-${{ matrix.suffix }}.zip
