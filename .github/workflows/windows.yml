@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - { sys: mingw32, env: i686, suffix: windows-32bit }
+          - { sys: clangarm64, env: clang-aarch64, suffix: windows-arm-64bit }
           - { sys: mingw64, env: x86_64, suffix: windows-64bit }
     steps:
       - name: Setup msys and install required packages
