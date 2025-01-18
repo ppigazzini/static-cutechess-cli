@@ -4,7 +4,7 @@ on:
     tags:
       - '*'
     branches:
-      - dev2
+      - dev
 defaults:
   run:
     shell: bash

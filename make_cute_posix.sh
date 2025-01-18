@@ -23,7 +23,8 @@ sudo ln -sf "$qt_install" /opt/qt5-static
 # build Qt static
 git clone https://code.qt.io/qt/qt5.git "$qt_source"
 cd "$qt_source"
-git switch --detach v5.15.10-lts-lgpl
+#git switch --detach v5.15.10-lts-lgpl
+git switch --detach v5.15.16-lts-lgpl
 # use the default if the fast build should stop working
 # perl init-repository --module-subset=default,-qtwebengine
 perl init-repository --module-subset=qtbase,qtsvg
