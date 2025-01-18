@@ -10,11 +10,14 @@ defaults:
     shell: bash
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         include:
-          - suffix: macos-arm-64bit
+          - os: macos-15
+            suffix: macos-arm-64bit
+          - os: macos-13
+            suffix: macos-64bit
     steps:
       - name: Install packages
         run: brew install ninja
