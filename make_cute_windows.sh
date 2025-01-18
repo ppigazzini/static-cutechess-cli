@@ -22,6 +22,7 @@ cd "$cute_source"
 git fetch -p --tags --all
 tag=$(git describe --tags `git rev-list --tags --max-count=1`)
 tag='v1.3.1'
+tag="v1.4.0-beta3"
 git switch --detach "$tag"
 git log --oneline -n 5 > "$cute_build"/cutechess.git.log
 
