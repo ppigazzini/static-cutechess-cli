@@ -14,7 +14,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - { sys: mingw32, env: i686, suffix: windows-32bit }
+          # https://packages.msys2.org/base/mingw-w64-qt5-static
+          # mingw-w64-i686-qt5-static is missing
+          # - { sys: mingw32, env: i686, suffix: windows-32bit }
           - { sys: mingw64, env: x86_64, suffix: windows-64bit }
     steps:
       - name: Setup msys and install required packages
@@ -47,12 +49,12 @@ jobs:
           vt_api_key: ${{ secrets.VT_API_KEY }}
           files: cutechess-cli-${{ matrix.suffix }}.zip
       - name: Upload archive
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cutechess-cli-${{ matrix.suffix }}.zip
           path: cutechess-cli-${{ matrix.suffix }}.zip
       - name: Upload artifact to release
         if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: cutechess-cli-${{ matrix.suffix }}.zip

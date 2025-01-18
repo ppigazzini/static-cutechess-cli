@@ -17,11 +17,13 @@ mkdir -p "$cute_source" "$cute_build"
 # build cutechess-cli
 git clone https://github.com/cutechess/cutechess.git "$cute_source"
 
-# checkout the latest tag
+# checkout the tag of interest
 cd "$cute_source"
 git fetch -p --tags --all
+# latest tag
 tag=$(git describe --tags `git rev-list --tags --max-count=1`)
 tag='v1.3.1'
+tag="v1.4.0-beta3"
 git switch --detach "$tag"
 git log --oneline -n 5 > "$cute_build"/cutechess.git.log
 
