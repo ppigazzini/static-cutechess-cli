@@ -23,7 +23,7 @@ sudo ln -sf "$qt_install" /opt/qt5-static
 # build Qt static
 git clone https://code.qt.io/qt/qt5.git "$qt_source"
 cd "$qt_source"
-git switch --detach v5.15.16-lts-lgpl
+git switch --detach v5.15.17-lts-lgpl
 # use the default if the fast build should stop working
 # perl init-repository --module-subset=default,-qtwebengine
 perl init-repository --module-subset=qtbase,qtsvg
@@ -43,6 +43,7 @@ git fetch -p --tags --all
 tag=$(git describe --tags `git rev-list --tags --max-count=1`)
 tag='v1.3.1'
 tag="v1.4.0-beta3"
+tag="v1.4.0"
 git switch --detach "$tag"
 git log --oneline -n 5 > "$cute_build"/cutechess.git.log
 
