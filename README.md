@@ -15,3 +15,10 @@ Scripts and GitHub workflows to build the static version of [cutechess-cli](http
 | Windows: WSL | x86_64 | linux |
 | Windows: MSYS2, Cygwin | x86_64, x86_32 | windows |
 | Windows | x86_64, x86_32 | windows |
+
+## License
+
+This repository is dual-licensed on a per-file basis:
+
+- Files originating from the Cutechess project are licensed under **GPL-3.0** (see `COPYING`), per the upstream project's license.
+- All other files in this repository are licensed under the **Blue Oak Model License 1.0.0** (see `LICENSE`).
